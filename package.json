@@ -3,7 +3,8 @@
   "version": "2.2204.13",
   "dependencies": {
     "@adiwajshing/baileys": "latest",
-    "express": "latest"
+    "express": "latest",
+    "file-type": "16.5.2"
   },
   "scripts": {
     "start": "node index.js"
