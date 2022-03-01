@@ -20,7 +20,7 @@ app.get('/d/f/:urlpath', async(req, res) => {
 	var {urlpath} = req.params
 	var mediaKey = Buffer.from(downloadm.mediaKey, 'base64')
 	if (downloadm.directPath) var directPath = Buffer.from(downloadm.directPath, 'base64')
-	var stream = await downloadM({url: urlpath, mediaKey, directPath}, downloadm.type)
+	var stream = await downloadM({url: urlmmg+urlpath, mediaKey, directPath}, downloadm.type)
 		let buffer = Buffer.from([])
   	  for await(const chunk of stream) {
   	  	buffer = Buffer.concat([buffer, chunk])
