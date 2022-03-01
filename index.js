@@ -4,7 +4,8 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
 const FileType = require('file-type')
 const downloadM = require('@adiwajshing/baileys').downloadContentFromMessage
 const PORT = process.env.PORT || 5000
-const app = require('express')()
+const express = require('express')
+const app = express()
 app.enable('trust proxy')
 app.set("json spaces",2)
 app.use(express.json())
