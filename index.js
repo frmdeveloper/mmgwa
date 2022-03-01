@@ -22,7 +22,7 @@ app.get('/d/f/:urlpath', async(req, res) => {
   try {
 	var urlmmg = 'https://mmg.whatsapp.net/d/f/'
 	var {urlpath} = req.params
-	var dl = axios.get(urlmmg+urlpath)
+	var dl = await axios.get(urlmmg+urlpath)
 	res.set("content-type", dl.headers['content-type']).send(dl.data)
   } catch (e) {
 	res.send(e+``)
