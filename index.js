@@ -29,7 +29,7 @@ app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
   	  for await(const chunk of stream) {
   	  	buffer = Buffer.concat([buffer, chunk])
   	  }
-	let type = await FileType.fromBuffer(data) || {
+	let type = await FileType.fromBuffer(buffer) || {
       mime: 'application/octet-stream',
       ext: '.bin'
 	}
