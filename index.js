@@ -25,10 +25,11 @@ app.get('/d/f/:urlpath', async(req, res) => {
 })
 app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
   try {
-	var urlmmg = 'https://mmg.whatsapp.net/d/f/'
-	var downloadm = req.query
-	var {urlpath} = req.params
-	var mediaKey = Buffer.from(req.params.mediaKey, 'base64')
+	const urlmmg = 'https://mmg.whatsapp.net/d/f/'
+	const downloadm = req.query
+	const {urlpath} = req.params
+	if (!downloadm.type) return res.status(404).send('?type not found')
+	const mediaKey = Buffer.from(req.params.mediaKey, 'base64')
 	if (downloadm.directPath) var directPath = Buffer.from(downloadm.directPath, 'base64')
 	var stream = await downloadM({url: urlmmg+urlpath, mediaKey, directPath}, downloadm.type)
 		let buffer = Buffer.from([])
@@ -41,6 +42,6 @@ app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
 	}
 	res.set("content-type", type.mime).send(buffer)
   } catch (e) {
-	res.send(e+``)
+	res.status(404).send(e+``)
   }
 })
