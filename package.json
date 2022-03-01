@@ -1,0 +1,11 @@
+{
+  "name": "mmgwa",
+  "version": "2.2204.13",
+  "dependencies": {
+    "@adiwajshing/baileys": "latest",
+    "express": "latest"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
