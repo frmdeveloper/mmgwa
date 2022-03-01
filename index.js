@@ -13,13 +13,14 @@ app.use(express.static("public"))
 app.listen(PORT, () => {
 	console.log(`Server berjalan dengan port: ${PORT}`)
 })
-app.get('*', async(req, res) => {
+app.get('/d/f/:urlpath', async(req, res) => {
   try {
 	var urlmmg = 'https://mmg.whatsapp.net/d/f/'
 	var downloadm = req.query
+	var {urlpath} = req.params
 	var mediaKey = Buffer.from(downloadm.mediaKey, 'base64')
 	if (downloadm.directPath) var directPath = Buffer.from(downloadm.directPath, 'base64')
-	var stream = await downloadM({url: downloadm.url, mediaKey, directPath}, downloadm.type)
+	var stream = await downloadM({url: urlpath, mediaKey, directPath}, downloadm.type)
 		let buffer = Buffer.from([])
   	  for await(const chunk of stream) {
   	  	buffer = Buffer.concat([buffer, chunk])
