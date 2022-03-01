@@ -13,6 +13,9 @@ app.use(express.static("public"))
 app.listen(PORT, () => {
 	console.log(`Server berjalan dengan port: ${PORT}`)
 })
+app.get('/', async(req, res) => {
+	res.send('.')
+})
 app.get('/d/f/:urlpath', async(req, res) => {
   try {
 	var urlmmg = 'https://mmg.whatsapp.net/d/f/'
