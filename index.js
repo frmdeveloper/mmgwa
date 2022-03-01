@@ -24,22 +24,12 @@ app.get('*', async(req, res) => {
   	  for await(const chunk of stream) {
   	  	buffer = Buffer.concat([buffer, chunk])
   	  }
-	res.set("content-type", downloadm.mimetype).send(buffer)
+	let type = await FileType.fromBuffer(data) || {
+      mime: 'application/octet-stream',
+      ext: '.bin'
+	}
+	res.set("content-type", type.mime).send(buffer)
   } catch (e) {
 	res.send(e+``)
   }
 })
-async function getFile(path) {
-  let res
-  let data = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (res = await fetch(path)).buffer() : fs.existsSync(path) ? fs.readFileSync(path) : typeof path === 'string' ? path : Buffer.alloc(0)
-  if (!Buffer.isBuffer(data)) throw new TypeError('Result is not a buffer')
-  let type = await FileType.fromBuffer(data) || {
-    mime: 'application/octet-stream',
-    ext: '.bin'
-  }
-  return {
-    res,
-    ...type,
-    data
-  }
-}
