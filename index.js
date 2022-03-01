@@ -4,6 +4,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
 const FileType = require('file-type')
 const downloadM = require('@adiwajshing/baileys').downloadContentFromMessage
 const PORT = process.env.PORT || 5000
+const axios = require('axios')
 const express = require('express')
 const app = express()
 app.enable('trust proxy')
@@ -16,6 +17,16 @@ app.listen(PORT, () => {
 })
 app.get('/', async(req, res) => {
 	res.send('.')
+})
+app.get('/d/f/:urlpath', async(req, res) => {
+  try {
+	var urlmmg = 'https://mmg.whatsapp.net/d/f/'
+	var {urlpath} = req.params
+	var dl = axios.get(urlmmg+urlpath)
+	res.set("content-type", dl.headers['content-type']).send(dl.data)
+  } catch (e) {
+	res.send(e+``)
+  }
 })
 app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
   try {
