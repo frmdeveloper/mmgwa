@@ -11,7 +11,7 @@ app.enable('trust proxy')
 app.set("json spaces",2)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static('./'))
+app.use(express.static("public"))
 app.listen(PORT, () => {
 	console.log(`Server berjalan dengan port: ${PORT}`)
 })
