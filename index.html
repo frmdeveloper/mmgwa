@@ -32,7 +32,7 @@
       <div class="card card-md">
         <div class="card-body">
           <h2 class="card-title text-center mb-4">Media downloader whatsapp</h2>
-          <form id="formlogin">
+          <form action="/d" method="get" autocomplete="off" id="dl">
             <div class="mb-3">
               <label class="form-label" for="url">
 				URL
@@ -52,7 +52,7 @@
               <input type="text" class="form-control" placeholder="ex: image" autocomplete="off" required id="type" name="type">
             </div>
             <div class="form-footer">
-              <button type="submit" class="form-field btn btn-success w-100">Sign in</button>
+              <button type="submit" class="btn btn-success w-100">Sign in</button>
             </div>
           </form>
         </div>
@@ -63,4 +63,11 @@
     </div>
   </div>
   <script src="https://www.frm.rf.gd/plugins/swal.js"></script>
+  <script>
+	$(document).ready(function() {
+		$('#dl').submit(function(e) {
+			e.preventDefault();
+			alert('p')
+		})
+	})
 </body>
