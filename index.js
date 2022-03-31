@@ -11,12 +11,9 @@ app.enable('trust proxy')
 app.set("json spaces",2)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static("public"))
+app.use(express.static('./'))
 app.listen(PORT, () => {
 	console.log(`Server berjalan dengan port: ${PORT}`)
-})
-app.get('/', async(req, res) => {
-	res.send('.')
 })
 app.get('/d/f/:urlpath', async(req, res) => {
 	var {urlpath} = req.params
