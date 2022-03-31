@@ -1,5 +1,6 @@
 process.env.TZ = 'Asia/Jakarta'
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
+__path = process.cwd()
 
 const FileType = require('file-type')
 const downloadM = require('@adiwajshing/baileys').downloadContentFromMessage
@@ -15,7 +16,7 @@ app.listen(PORT, () => {
 	console.log(`Server berjalan dengan port: ${PORT}`)
 })
 app.get('/', async(req, res) => {
-	res.sendFile(__dirname+'index.html')
+	res.sendFile(__path+'/index.html')
 })
 app.get('/d/f/:urlpath', async(req, res) => {
 	var {urlpath} = req.params
