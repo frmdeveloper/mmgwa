@@ -32,12 +32,12 @@
       <div class="card card-md">
         <div class="card-body">
           <h2 class="card-title text-center mb-4">Media downloader whatsapp</h2>
-          <form action="/d" method="get" id="dl">
+          <div action="/d" method="get" id="dl">
             <div class="mb-3">
               <label class="form-label" for="url">
 				URL
 			  </label>
-              <input type="url" class="form-control" placeholder="https://mmg.whatsapp.net/d/f/blabla" required name="url">
+              <input type="url" class="form-control" placeholder="https://mmg.whatsapp.net/d/f/blabla" required name="url" id="url">
             </div>
             <div class="mb-2">
               <label class="form-label" for="mediakey">
@@ -54,7 +54,7 @@
             <div class="form-footer">
               <button type="submit" class="btn btn-success w-100">Lanjutkan</button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
       <div class="text-center text-muted mt-3">
@@ -64,17 +64,7 @@
   </div>
   <script src="https://www.frm.rf.gd/plugins/swal.js"></script>
   <script>
-	$(document).ready(function() {
-		$('#dl').submit(function(e) {
-			e.preventDefault();
-			$.ajax({
-				type: 'get',
-				url: $(this).attr('action'),
-				data: $(this).serialize(),
-				success: function(data) {
-					alert(data)
-				}
-			})
-		})
-	})
+  downloadM() {
+	location.href
+  }
 </body>
