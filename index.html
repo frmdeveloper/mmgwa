@@ -67,7 +67,14 @@
 	$(document).ready(function() {
 		$('#dl').submit(function(e) {
 			e.preventDefault();
-			alert('p')
+			$.ajax({
+				type: 'POST',
+				url: $(this).attr('action'),
+				data: $(this).serialize(),
+				success: function(data) {
+					alert(data)
+				}
+			})
 		})
 	})
 </body>
