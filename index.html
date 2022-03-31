@@ -68,7 +68,7 @@
 		$('#dl').submit(function(e) {
 			e.preventDefault();
 			$.ajax({
-				type: 'POST',
+				type: 'get',
 				url: $(this).attr('action'),
 				data: $(this).serialize(),
 				success: function(data) {
