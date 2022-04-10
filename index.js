@@ -1,6 +1,7 @@
 process.env.TZ = 'Asia/Jakarta'
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
 __path = process.cwd()
+process.on('uncaughtException', console.error)
 
 const FileType = require('file-type')
 const downloadM = require('@adiwajshing/baileys').downloadContentFromMessage
