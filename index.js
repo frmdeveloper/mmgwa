@@ -21,7 +21,7 @@ app.get('/', async(req, res) => {
 })
 app.get('/d/f/:urlpath', async(req, res) => {
 	const {urlpath} = req.params
-	if (!urlpath) return res.status(404).send('Tidak ditemukan')
+	if (!urlpath) return res.send('Tidak ditemukan')
 	res.download('https://mmg.whatsapp.net/d/f/'+urlpath)
 })
 app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
@@ -29,7 +29,7 @@ app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
 	const urlmmg = 'https://mmg.whatsapp.net/d/f/'
 	const downloadm = req.query
 	const {urlpath} = req.params
-	if (!downloadm.type) return res.status(404).send('?type not found')
+	if (!downloadm.type) return res.send('?type not found')
 	const mediaKey = Buffer.from(req.params.mediaKey, 'base64')
 	if (downloadm.directPath) var directPath = Buffer.from(downloadm.directPath, 'base64')
 	var stream = await downloadM({url: urlmmg+urlpath, mediaKey, directPath}, downloadm.type)
