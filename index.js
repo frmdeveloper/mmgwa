@@ -22,7 +22,7 @@ app.get('/', async(req, res) => {
 app.get('/d/f/:urlpath', async(req, res) => {
 	var {urlpath} = req.params
 	if (!urlpath) return res.status(404).send('Tidak ditemukan')
-	res.download('https://mmg.whatsapp.net/d/f/'+urlpath)
+	res.redirect('https://mmg.whatsapp.net/d/f/'+urlpath)
 })
 app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
   try {
