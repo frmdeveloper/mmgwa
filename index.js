@@ -19,9 +19,10 @@ app.listen(PORT, () => {
 app.get('/', async(req, res) => {
 	res.sendFile(__path+'/index.html')
 })
-app.get('/d/f/:pathurl', async(req, res) => {
-	const {pathurl} = req.params
-	res.download('https://mmg.whatsapp.net/d/f/'+pathurl)
+app.get('/d/f/:urlpath', async(req, res) => {
+	const {urlpath} = req.params
+	if (!urlpath) return res.status(404).send('Tidak ditemukan')
+	res.download('https://mmg.whatsapp.net/d/f/'+urlpath)
 })
 app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
   try {
