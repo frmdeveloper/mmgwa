@@ -19,18 +19,16 @@ app.listen(PORT, () => {
 app.get('/', async(req, res) => {
 	res.sendFile(__path+'/index.html')
 })
-app.get('/d/f/:urlpath', async(req, res) => {
-	const {urlpath} = req.params
-	if (!urlpath) return res.status(404).send('Tidak ditemukan')
-	res.download('https://mmg.whatsapp.net/d/f/'+urlpath)
-})
-app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
+app.get('*', async(req, res) => {
   try {
+    if (!req.url.includes('/d/f/')) return res.redirect('/')
+    if (req.url.endsWith(".enc")) return res.download('https://mmg.whatsapp.net/d/f/'+urlpath)
 	const urlmmg = 'https://mmg.whatsapp.net/d/f/'
 	const downloadm = req.query
-	const {urlpath} = req.params
+	const urlpath = req.url.split('/d/f/')[1]
+	const mediaKey = urlpath.split('.enc/')[1].split('?')[0]
 	if (!downloadm.type) return res.status(404).send('?type not found')
-	const mediaKey = Buffer.from(req.params.mediaKey, 'base64')
+	const mediaKey = Buffer.from(mediaKey, 'base64')
 	if (downloadm.directPath) var directPath = Buffer.from(downloadm.directPath, 'base64')
 	var stream = await downloadM({url: urlmmg+urlpath, mediaKey, directPath}, downloadm.type)
 		let buffer = Buffer.from([])
