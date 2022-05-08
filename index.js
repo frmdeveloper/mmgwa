@@ -25,12 +25,12 @@ app.get('*', async(req, res) => {
     if (req.url.endsWith(".enc")) return res.download('https://mmg.whatsapp.net/d/f/'+urlpath)
 	const urlmmg = 'https://mmg.whatsapp.net/d/f/'
 	const downloadm = req.query
-	const urlpath = req.url.split('/d/f/')[1]
-	const mediakey = urlpath.split('.enc/')[1].split('?')[0]
+	const urlpath = req.url.split('/d/f/')[1].split('/')
+	const mediakey = urlpath[1].split('?')[0]
 	if (!downloadm.type) return res.status(404).send('?type not found')
 	const mediaKey = Buffer.from(mediakey, 'base64')
 	if (downloadm.directPath) var directPath = Buffer.from(downloadm.directPath, 'base64')
-	var stream = await downloadM({url: urlmmg+urlpath, mediaKey, directPath}, downloadm.type)
+	var stream = await downloadM({url: urlmmg+urlpath[0], mediaKey, directPath}, downloadm.type)
 		let buffer = Buffer.from([])
   	  for await(const chunk of stream) {
   	  	buffer = Buffer.concat([buffer, chunk])
