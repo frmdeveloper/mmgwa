@@ -30,7 +30,7 @@ app.get('*', async(req, res) => {
 	if (!downloadm.type) return res.status(404).send('?type not found')
 	const mediaKey = Buffer.from(mediakey, 'base64')
 	if (downloadm.directPath) var directPath = Buffer.from(downloadm.directPath, 'base64')
-	var stream = await downloadM({url: urlmmg+urlpath[0], mediaKey, directPath}, downloadm.type)
+	var stream = await downloadM({url: urlmmg+urlpath[0], mediaKey, directPath}, 'image')
 		let buffer = Buffer.from([])
   	  for await(const chunk of stream) {
   	  	buffer = Buffer.concat([buffer, chunk])
