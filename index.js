@@ -43,6 +43,6 @@ app.get('/d/f/:urlpath/:mediaKey', async(req, res) => {
 	}
 	res.set("content-type", type.mime).send(buffer)
   } catch (e) {
-	res.status(404).send(e+``)
+	res.download('https://mmg.whatsapp.net/d/f/'+urlpath)
   }
 })
